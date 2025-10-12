@@ -386,6 +386,7 @@ pub fn start_bottom(enable_error_hook: &mut bool) -> anyhow::Result<()> {
     panic::set_hook(Box::new(panic_hook));
 
     // Set termination hook
+    #[cfg(not(target_os = "redox"))]
     ctrlc::set_handler(move || {
         // TODO: Consider using signal-hook (https://github.com/vorner/signal-hook) to handle
         // more types of signals?

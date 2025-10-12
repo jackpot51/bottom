@@ -64,7 +64,7 @@ battery = ["starship-battery"]
 nvidia = ["nvml-wrapper"]
 gpu = ["nvidia"]
 zfs = []
-deploy = ["battery", "gpu", "zfs"]
+deploy = ["gpu", "zfs"]
 default = ["deploy"]
 
 # Should not be included in builds.
@@ -78,7 +78,6 @@ cfg-if = "1.0.3"
 clap = { version = "4.5.48", features = ["default", "cargo", "wrap_help", "derive"] }
 concat-string = "1.0.1"
 crossterm = "0.29.0"
-ctrlc = { version = "3.5.0", features = ["termination"] }
 dirs = "6.0.0"
 hashbrown = "0.16.0"
 humantime = "2.3.0"
@@ -89,7 +88,7 @@ nvml-wrapper = { version = "0.11.0", optional = true, features = ["legacy-functi
 regex = "1.11.2"
 serde = { version = "1.0.226", features = ["derive"] }
 starship-battery = { version = "0.10.2", optional = true }
-sysinfo = "=0.37.0"
+sysinfo = { git = "https://github.com/jackpot51/sysinfo.git" }
 timeless = "0.0.14-alpha"
 toml_edit = { version = "0.23.6", features = ["serde"] }
 tui = { version = "0.30.0-alpha.5", package = "ratatui", features = ["unstable-rendered-line-info"] }
@@ -106,6 +105,9 @@ time = { version = "0.3.44", features = ["local-offset", "formatting", "macros"]
 schemars = { version = "1.0.4", optional = true }
 serde_json = { version = "1.0.145", optional = true }
 strum = { version = "0.27.2", features = ["derive"], optional = true }
+
+[target.'cfg(not(target_os = "redox"))'.dependencies]
+ctrlc = { version = "3.5.0", features = ["termination"] }
 
 [target.'cfg(unix)'.dependencies]
 libc = "0.2.176"
