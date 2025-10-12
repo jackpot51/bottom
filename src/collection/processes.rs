@@ -164,7 +164,7 @@ impl DataCollector {
                     self,
                     time_diff,
                 )
-            } else if #[cfg(any(target_os = "freebsd", target_os = "macos", target_os = "windows", target_os = "android", target_os = "ios"))] {
+            } else if #[cfg(any(target_os = "freebsd", target_os = "macos", target_os = "windows", target_os = "android", target_os = "ios", target_os = "redox"))] {
                 sysinfo_process_data(self)
             } else {
                 Err(crate::collection::error::CollectionError::Unsupported)
