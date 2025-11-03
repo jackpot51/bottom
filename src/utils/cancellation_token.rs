@@ -51,6 +51,15 @@ impl CancellationToken {
             .lock()
             .expect("cancellation token lock should not be poisoned");
 
+        if cfg!(target_os = "redox") {
+            let value = *guard;
+            drop(guard);
+
+            // Redox OS Condvar::wait_timeout hangs
+            std::thread::sleep(duration);
+            return value;
+        }
+
         let (result, _) = self
             .cvar
             .wait_timeout(guard, duration)
