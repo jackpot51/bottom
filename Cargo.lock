@@ -1958,7 +1958,7 @@ dependencies = [
 [[package]]
 name = "sysinfo"
 version = "0.37.2"
-source = "git+https://github.com/jackpot51/sysinfo.git#2c68223b57beab4aef7d03ca53ea39bbcbee9733"
+source = "git+https://github.com/jackpot51/sysinfo.git#d7546771d2ba8e775db24c324625bc4a6a4f8c0c"
 dependencies = [
  "libc",
  "memchr",
